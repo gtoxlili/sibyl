@@ -2,7 +2,7 @@
 
 mod args;
 mod bind;
-mod cols;
+pub(crate) mod cols;
 mod cursor;
 mod rows;
 mod data;
@@ -482,7 +482,7 @@ impl<'a> Statement<'a> {
     stmt.execute(data.as_mut())?;
 
     assert_eq!(data, [0x64, 0x61, 0x74, 0x61, 0x00, 0x00, 0x00, 0x00]);
-    // Note the "trailing" original zeros ----^^^^--^^^^--^^^^--^^^^    
+    // Note the "trailing" original zeros ----^^^^--^^^^--^^^^--^^^^
     assert_eq!(stmt.len_of("VAL")?, 4);
     let res = data[0..stmt.len_of("VAL")?].as_ref();
     assert_eq!(res.len(), 4);

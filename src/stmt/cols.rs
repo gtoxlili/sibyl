@@ -200,7 +200,7 @@ impl<'a> ColumnInfo<'a> {
 // }
 
 /// Column output buffer
-pub(crate) enum ColumnBuffer {
+pub enum ColumnBuffer {
     Text(Ptr<OCIString>),
     CLOB(Descriptor<OCICLobLocator>),
     Binary(Ptr<OCIRaw>),

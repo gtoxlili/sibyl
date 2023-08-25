@@ -4,7 +4,7 @@ use crate::{Result, Error, oci};
 use super::*;
 use std::ops::{Deref, DerefMut};
 
-pub(crate) struct Handle<T: HandleType> (Ptr<T>);
+pub struct Handle<T: HandleType> (Ptr<T>);
 
 impl<T: HandleType> Deref for Handle<T> {
     type Target = T;

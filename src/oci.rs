@@ -97,14 +97,14 @@ pub(crate) const OCI_HTYPE_SPOOL            : u32 = 27;
 #[repr(C)] pub(crate) struct OCIDescribe    { _private: [u8; 0] }
 #[repr(C)] pub(crate) struct OCIServer      { _private: [u8; 0] }
 #[repr(C)] pub        struct OCISession     { _private: [u8; 0] }
-#[repr(C)] pub(crate) struct OCIRaw         { _private: [u8; 0] }
+#[repr(C)] pub struct OCIRaw         { _private: [u8; 0] }
 
 #[repr(C)] pub(crate) struct OCIAuthInfo    { _private: [u8; 0] }
 #[repr(C)] pub(crate) struct OCISPool       { _private: [u8; 0] }
 #[repr(C)] pub(crate) struct OCICPool       { _private: [u8; 0] }
 
 /// Trait of handles to have their own type
-pub(crate) trait HandleType : OCIStruct {
+pub trait HandleType : OCIStruct {
     fn get_type() -> u32;
 }
 
@@ -151,10 +151,10 @@ pub(crate) const OCI_DTYPE_TIMESTAMP_LTZ    : u32 = 70;  // Timestamp with local
 #[repr(C)] pub        struct OCILobLocator  { _private: [u8; 0] }
 #[repr(C)] pub(crate) struct OCILobRegion   { _private: [u8; 0] }
 #[repr(C)] pub(crate) struct OCIParam       { _private: [u8; 0] }
-#[repr(C)] pub(crate) struct OCIRowid       { _private: [u8; 0] }
+#[repr(C)] pub struct OCIRowid       { _private: [u8; 0] }
 #[repr(C)] pub        struct OCIDateTime    { _private: [u8; 0] }
 #[repr(C)] pub        struct OCIInterval    { _private: [u8; 0] }
-#[repr(C)] pub(crate) struct OCIString      { _private: [u8; 0] }
+#[repr(C)] pub struct OCIString      { _private: [u8; 0] }
 
 // Virtual descriptors
 pub struct OCICLobLocator           {}

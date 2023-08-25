@@ -147,7 +147,11 @@ pub use err::Error;
 pub use env::Environment;
 pub use session::Session;
 pub use pool::{SessionPool, SessionPoolGetMode};
-pub use stmt::{Statement, Cursor, Rows, Row, ToSql, FromSql, ColumnType, Position};
+pub use stmt::{cols::{
+    Column,
+    ColumnBuffer,
+}, ColumnType, Cursor, FromSql, Position, Row, Rows, Statement,
+               ToSql};
 pub use types::{Date, Raw, Number, Varchar, RowID, DateTime, Interval};
 pub use types::number::Integer;
 pub use oci::{Cache, CharSetForm, client_version};
@@ -231,7 +235,7 @@ pub mod test_env {
             let pool = POOL.get_or_try_init(|| {
                 let dbname = std::env::var("DBNAME").expect("database name");
                 let dbuser = std::env::var("DBUSER").expect("user name");
-                let dbpass = std::env::var("DBPASS").expect("password");    
+                let dbpass = std::env::var("DBPASS").expect("password");
                 let oracle = ORACLE.get_or_try_init(|| Environment::new())?;
                 oracle.create_session_pool(&dbname, &dbuser, &dbpass, 0, 1, 10)
             })?;
@@ -241,7 +245,7 @@ pub mod test_env {
     #[cfg(all(feature="blocking",not(docsrs)))]
     pub use self::blocking::get_session;
 
- 
+
     #[cfg(all(feature="nonblocking",not(docsrs)))]
     mod nonblocking {
         use once_cell::sync::OnceCell;
@@ -255,7 +259,7 @@ pub mod test_env {
             let pool = POOL.get_or_try_init(async {
                 let dbname = std::env::var("DBNAME").expect("database name");
                 let dbuser = std::env::var("DBUSER").expect("user name");
-                let dbpass = std::env::var("DBPASS").expect("password");    
+                let dbpass = std::env::var("DBPASS").expect("password");
                 let oracle = ORACLE.get_or_try_init(|| Environment::new())?;
                 oracle.create_session_pool(&dbname, &dbuser, &dbpass, 0, 1, 10).await
             }).await?;
@@ -263,5 +267,5 @@ pub mod test_env {
         }
     }
     #[cfg(all(feature="nonblocking",not(docsrs)))]
-    pub use self::nonblocking::get_session;    
+    pub use self::nonblocking::get_session;
 }

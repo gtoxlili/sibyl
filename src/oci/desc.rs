@@ -4,7 +4,7 @@ use crate::{Result, Error, oci};
 use super::*;
 use std::ops::{Deref, DerefMut};
 
-pub(crate) struct Descriptor<T> (Ptr<T::OCIType>)
+pub struct Descriptor<T> (Ptr<T::OCIType>)
 where T: DescriptorType
     , T::OCIType: OCIStruct
 ;
