@@ -318,7 +318,7 @@ impl Column {
         self.ind == OCI_IND_NULL
     }
 
-    pub(crate) fn data(&mut self) -> &mut ColumnBuffer {
+    pub fn data(&mut self) -> &mut ColumnBuffer {
         &mut self.buf
     }
 
