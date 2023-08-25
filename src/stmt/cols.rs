@@ -314,7 +314,7 @@ impl Column {
         }
     }
 
-    pub(crate) fn is_null(&self) -> bool {
+    pub fn is_null(&self) -> bool {
         self.ind == OCI_IND_NULL
     }
 
