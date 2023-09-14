@@ -351,7 +351,7 @@ impl Columns {
         let mut names = HashMap::with_capacity(num_columns);
         let mut cols  = Vec::with_capacity(num_columns);
 
-        let utf8_factor = std::env::var("ORACLE_UTF8_CONV_FACTOR").ok().and_then(|val| val.parse::<u32>().ok()).unwrap_or(1);
+        let utf8_factor = std::env::var("ORACLE_UTF8_CONV_FACTOR").ok().and_then(|val| val.parse::<u32>().ok()).unwrap_or(2);
         for i in 0..num_columns {
             let col_info = param::get((i + 1) as u32, OCI_HTYPE_STMT, stmt.as_ref(), err.as_ref())?;
             let data_type = col_info.get_attr::<u16>(OCI_ATTR_DATA_TYPE, err.as_ref())?;
